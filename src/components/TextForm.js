@@ -5,24 +5,29 @@ export default function TextForm(props) {
         // console.log("Uppercase was Clicked" + text);
         let newText = text.toUpperCase();
         setText(newText);
+        props.showAlert("Converted to Uppercase!", "success");
     };
     const handleLoClick = () => {
         // console.log("Lowercase was Clicked" + text);
         let newText = text.toLowerCase();
         setText(newText);
+        props.showAlert("Converted to Lowercase!", "success");
     };
     const handleClClick = () => {
         let newText = "";
         setText(newText);
+        props.showAlert("TextArea Cleared", "success");
     };
 
     const handleSenClick = () => {
         let newText = text.charAt(0).toUpperCase() + text.slice(1);
         setText(newText);
+        props.showAlert("Converted to Sentence!", "success");
     };
     const handleRemSpClick = () => {
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "));
+        props.showAlert("Extra Space Removed!", "success");
     };
     const handleOnChange = (event) => {
         // console.log("On Change");
