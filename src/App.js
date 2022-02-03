@@ -23,12 +23,12 @@ function App() {
             setMode("dark");
             document.body.style.backgroundColor = "#042743";
             showAlert("Dark mode has been enabled", "success");
-            document.title = "TextUtils-Dark Mode";
+            // document.title = "TextUtils-Dark Mode";
         } else {
             setMode("light");
             document.body.style.backgroundColor = "white";
             showAlert("Light mode has been enabled", "success");
-            document.title = "TextUtils-Light Mode";
+            // document.title = "TextUtils-Light Mode";
         }
     };
     return (
@@ -43,7 +43,11 @@ function App() {
                 <Alert alert={alert} />
                 <div className="container my-3">
                     <Routes>
-                        <Route exact path="/about" element={<About />} />
+                        <Route
+                            exact
+                            path="/about"
+                            element={<About mode={mode} />}
+                        />
 
                         <Route
                             exact
@@ -51,7 +55,7 @@ function App() {
                             element={
                                 <TextForm
                                     showAlert={showAlert}
-                                    heading="Enter the text to analyze below"
+                                    heading="Try TextUtils- Word Counter, Character Counter, Remove extra spaces"
                                     mode={mode}
                                 />
                             }

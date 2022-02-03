@@ -42,7 +42,7 @@ export default function TextForm(props) {
                     color: props.mode === "dark" ? "white" : "#042743",
                 }}
             >
-                <h1>{props.heading}</h1>
+                <h1 className="mb-4">{props.heading}</h1>
                 <div className="mb-3">
                     <textarea
                         className="form-control"
@@ -50,7 +50,7 @@ export default function TextForm(props) {
                         rows="8"
                         style={{
                             backgroundColor:
-                                props.mode === "dark" ? "grey" : "white",
+                                props.mode === "dark" ? "#13466e" : "white",
                             color: props.mode === "dark" ? "white" : "#042743",
                         }}
                         value={text}
@@ -58,31 +58,36 @@ export default function TextForm(props) {
                     ></textarea>
                 </div>
                 <button
-                    className="btn btn-primary mx-1"
+                    disabled={text.length === 0}
+                    className="btn btn-primary mx-1 my-1"
                     onClick={handleUpClick}
                 >
                     Convert to Uppercase
                 </button>
                 <button
-                    className="btn btn-primary mx-1"
+                    disabled={text.length === 0}
+                    className="btn btn-primary mx-1 my-1"
                     onClick={handleLoClick}
                 >
                     Convert to Lowercase
                 </button>
                 <button
-                    className="btn btn-primary mx-1"
+                    disabled={text.length === 0}
+                    className="btn btn-primary mx-1 my-1"
                     onClick={handleClClick}
                 >
                     Clear
                 </button>
                 <button
-                    className="btn btn-primary mx-1"
+                    disabled={text.length === 0}
+                    className="btn btn-primary mx-1 my-1"
                     onClick={handleSenClick}
                 >
                     Sentence
                 </button>
                 <button
-                    className="btn btn-primary mx-1"
+                    disabled={text.length === 0}
+                    className="btn btn-primary mx-1 my-1"
                     onClick={handleRemSpClick}
                 >
                     Remove Space
@@ -96,15 +101,22 @@ export default function TextForm(props) {
             >
                 <h2>Your text summary</h2>
                 <p>
-                    {text.split(" ").length} words and {text.length} characters
+                    {
+                        text.split(" ").filter((element) => {
+                            return element.length !== 0;
+                        }).length
+                    }{" "}
+                    words and {text.length} characters
                 </p>
-                <p>{0.008 * text.split(" ").length}Minutes to read</p>
-                <h2>Preview</h2>
                 <p>
-                    {text.length > 0
-                        ? text
-                        : "Enter something in the textbox to preview it here"}
+                    {0.008 *
+                        text.split(" ").filter((element) => {
+                            return element.length !== 0;
+                        }).length}
+                    Minutes to read
                 </p>
+                <h2>Preview</h2>
+                <p>{text.length > 0 ? text : "Nothing to preview!"}</p>
             </div>
         </>
     );
